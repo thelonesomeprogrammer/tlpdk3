@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>The Lonesome Programmer</title>
+    <link rel="stylesheet" href="/index-f92a62b8da94c850.css" integrity="sha384&#x2D;VoFm6AnLTKVLcrMSkaYj9IXKpR3aqH3S9Tg3xsfYDEXAai&#x2F;ub6bHg&#x2B;stXdbmfQNx"/>
+    <link rel="stylesheet" href="/tailwind-9c84f3dfd0718b74.css" integrity="sha384&#x2D;EWnXS3EZRCEwQrWqGX2fxJrM5WNVBgn3VgU5CeQw4PDmWAvxBYRt7ZplH80DohrR"/>
+    <link rel="icon" href="/favicon-bd4b4f63fb082ac4.ico" integrity="sha384&#x2D;QP0wz1iSdW21JCD4e2JS2FCZswV2LqAXZcC9VqrUpQQSse3wrn&#x2F;kTQydP9DEOpO4"/>
+    <link rel="icon" href="/favicon-32x32-6bcb3c553fec70b7.png" integrity="sha384&#x2D;6AIGshJCg0AO91jDpb56zOyv&#x2B;4rXS&#x2F;b8FbLKRdSqYm1jfrG&#x2F;R0&#x2B;43HRoBRDWv5Ic"/>
+    <link rel="icon" href="/favicon-16x16-f93ae3978500eb57.png" integrity="sha384&#x2D;CZKCIAZA7Et&#x2F;IPF2vaCTCnBnng452Ng3QKYW7rWcKiqKtnC0FkEXHxt&#x2B;SQGY6nbi"/>
+  <link rel="modulepreload" href="/trunk-template-a54509bd3f333103.js" crossorigin="anonymous" integrity="sha384-XeKmnwVRk2l1lr3EvmPYPqX6EMBilSrvIYB8M0+/6jttmL4YBravP1P6hDCpzbhQ"><link rel="preload" href="/trunk-template-a54509bd3f333103_bg.wasm" crossorigin="anonymous" integrity="sha384-YAxKDF5MzLrTzmOipb4xyvcmDuDh+W32oBcjx5h/Eqnqg/ftUl37IMQ1fdoiQuPr" as="fetch" type="application/wasm"></head>
+  <body>
+  
+<script type="module">
+import init, * as bindings from '/trunk-template-a54509bd3f333103.js';
+const wasm = await init({ module_or_path: '/trunk-template-a54509bd3f333103_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>
