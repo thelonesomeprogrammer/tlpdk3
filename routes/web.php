@@ -21,3 +21,4 @@ Route::get('/', [VeiwController::class, 'index']);
 Route::apiResource('api/projects', ProjectController::class);
 
 Route::get('/{filename}', [VeiwController::class, 'file']);
+Route::get('/{dir}/{filename}', [VeiwController::class, 'dirfile']);

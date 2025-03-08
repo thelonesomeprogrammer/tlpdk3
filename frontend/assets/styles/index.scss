@@ -42,6 +42,9 @@ body {
     background-color: var(--bg-dark);
   }
 }
+.logo {
+    height: 110%;
+}
 
 .logo a {
   font-size: 1.5rem;
@@ -92,7 +95,7 @@ body {
   .navbar-item a {
     color: var(--text-color-light);
   }
-  
+
   .navbar-item a:hover {
     background-color: var(--primary-color);
     color: var(--text-color-light);
@@ -124,11 +127,11 @@ body {
   .desktop-menu {
     display: none;
   }
-  
+
   .mobile-menu {
     display: block;
   }
-  
+
   .navbar-menu {
     display: none;
     flex-direction: column;

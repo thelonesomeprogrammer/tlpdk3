@@ -41,10 +41,10 @@ fn app() -> Html {
 #[function_component(Nav)]
 fn nav() -> Html {
     return html! {
-        <nav class="navbar">
+        <nav class="navbar bg-slate-400 p-2 pl-4 pr-4">
             <section class="navbar-section logo">
                 <Link<Route> to={Route::Home}>
-                    <img src="/images/new-with-text.png" alt="Logo" class="w-30 h-40" />
+                    <img src="/images/logo.png" alt="Logo" class="w-30 h-10" />
                 </Link<Route>>
             </section>
             <section class="navbar-section desktop-menu">

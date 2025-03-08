@@ -39,6 +39,10 @@ body {
     background-color: var(--bg-dark);
   }
 }
+.logo {
+  height: 110%;
+}
+
 .logo a {
   font-size: 1.5rem;
   font-weight: bold;
