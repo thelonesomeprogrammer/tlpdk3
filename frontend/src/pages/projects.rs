@@ -1,6 +1,6 @@
 use gloo::net::http::Request;
-use rmp_serde::{Deserializer, Serializer};
-use serde::{Deserialize, Serialize};
+use rmp_serde::Deserializer;
+use serde::Deserialize;
 use yew::prelude::*;
 
 #[derive(PartialEq, Clone, Deserialize)]

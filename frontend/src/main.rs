@@ -43,7 +43,9 @@ fn nav() -> Html {
     return html! {
         <nav class="navbar">
             <section class="navbar-section logo">
-                <Link<Route> to={Route::Home}>{ "logo" }</Link<Route>>
+                <Link<Route> to={Route::Home}>
+                    <img src="/images/new-with-text.png" alt="Logo" class="w-30 h-40" />
+                </Link<Route>>
             </section>
             <section class="navbar-section desktop-menu">
                 <nav class="dropmenu animated">
