@@ -155,3 +155,46 @@ body {
 .button_container.open .bottom {
   transform: translateY(-8px) rotate(-45deg);
 }
+
+.link {
+  position: absolute;
+  width: 20px;
+  height: 100px;
+  background-color: #d3d3d3;
+  border-radius: 10px;
+}
+
+.joint {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.base {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #000;
+  z-index: 10;
+}
+
+.robot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grip {
+  position: absolute;
+  width: 40px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 20%;
+  z-index: 10;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../frontend/assets/styles/index.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAEA;AACA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;AACA;EACE;IACE;IACA;;;AAIJ;AACA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;IACE;;;AAGJ;EACI;;;AAGJ;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;IACE;;;AAIJ;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;IACE;;EAGF;IACE;IACA;;;AAIJ;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;IACE;;EAGF;IACE;;EAGF;IACE;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;EAGF;IACE;;EAGF;IACE;;;AAIJ;AACA;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA%22,%22file%22:%22index.css%22%7D */
