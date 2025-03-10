@@ -173,6 +173,7 @@ body {
     height: 100px;
     background-color: #d3d3d3;
     border-radius: 10px;
+    transform-origin: 10px 10px;
 }
 
 .joint {
@@ -182,6 +183,7 @@ body {
     background-color: #000;
     border-radius: 50%;
     z-index: 10;
+    transform-origin: 50% 50%;
 }
 
 .base {
@@ -202,8 +204,18 @@ body {
 .grip {
     position: absolute;
     width: 40px;
-    height: 10px;
+    height: 35px;
     background-color: #000;
     border-radius: 20%;
     z-index: 10;
+    transform-origin: 20px 5px;
+
+    div {
+        position: absolute;
+        width: 20px;
+        height: 30px;
+        background-color: #fff;
+        transform: translate(10px,10px);
+    }
+
 }
