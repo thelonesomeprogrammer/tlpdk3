@@ -2,9 +2,9 @@ use yew::prelude::*;
 
 #[function_component(Robot)]
 pub fn robot() -> Html {
-    let angle1: f32 = 0.0f32.to_radians();
-    let angle2: f32 = 90.0f32.to_radians();
-    let angle3: f32 = 90.0f32.to_radians();
+    let angle1: f32 = 45.0f32.to_radians();
+    let angle2: f32 = 45.0f32.to_radians();
+    let angle3: f32 = 50.0f32.to_radians();
 
     let pos1 = [0.0, 0.0];
     let pos2 = [angle1.sin() * 80.0, angle1.cos() * 80.0];
@@ -17,7 +17,11 @@ pub fn robot() -> Html {
         "transform: translate({}px, {}px) rotate({}rad); ",
         pos1[0], pos1[1], -angle1
     );
-    let joint = format!("transform: translate({}px, {}px)", pos2[0], pos2[1],);
+    let joint = format!(
+        "transform: translate({}px, {}px)",
+        pos2[0],
+        pos2[1] + 3.0 + 2.5 * angle1.sin(),
+    );
     let link2 = format!(
         "transform: translate({}px, {}px) rotate({}rad);",
         pos2[0],
@@ -27,7 +31,7 @@ pub fn robot() -> Html {
     let link3 = format!(
         "transform: translate({}px, {}px) rotate({}rad);",
         pos3[0],
-        pos3[1],
+        pos3[1] + 2.5 + 2.5 * angle1.sin(),
         -angle3 - angle2 - angle1
     );
 

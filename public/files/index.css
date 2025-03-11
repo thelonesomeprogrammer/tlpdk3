@@ -160,7 +160,7 @@ body {
   position: absolute;
   width: 20px;
   height: 100px;
-  background-color: #d3d3d3;
+  background: linear-gradient(145deg, #bbb, #888);
   border-radius: 10px;
   transform-origin: 10px 10px;
 }
@@ -169,7 +169,8 @@ body {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: #000;
+  background: radial-gradient(circle, #000, #333);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   z-index: 10;
   transform-origin: 50% 50%;
@@ -180,7 +181,8 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #000;
+  background: linear-gradient(145deg, #333, #666);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
 
@@ -194,7 +196,7 @@ body {
   position: absolute;
   width: 40px;
   height: 35px;
-  background-color: #000;
+  background: linear-gradient(145deg, #222, #555);
   border-radius: 20%;
   z-index: 10;
   transform-origin: 20px 5px;
@@ -207,4 +209,4 @@ body {
   transform: translate(10px, 10px);
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../frontend/assets/styles/index.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAEA;AACA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;AACA;EACE;IACE;IACA;;;AAIJ;AACA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;IACE;;;AAGJ;EACI;;;AAGJ;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;IACE;;;AAIJ;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;IACE;;EAGF;IACE;IACA;;;AAIJ;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;IACE;;EAGF;IACE;;EAGF;IACE;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;EAGF;IACE;;EAGF;IACE;;;AAIJ;AACA;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA%22,%22file%22:%22index.css%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22../../../frontend/assets/styles/index.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAEA;AACA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;AACA;EACE;IACE;IACA;;;AAIJ;AACA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;IACE;;;AAGJ;EACI;;;AAGJ;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;IACE;;;AAIJ;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;IACE;;EAGF;IACE;IACA;;;AAIJ;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;IACE;;EAGF;IACE;;EAGF;IACE;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;EAGF;IACE;;EAGF;IACE;;;AAIJ;AACA;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA%22,%22file%22:%22index.css%22%7D */
