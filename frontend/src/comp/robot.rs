@@ -1,11 +1,17 @@
 use yew::prelude::*;
 
-#[function_component(Robot)]
-pub fn robot() -> Html {
-    let angle1: f32 = 45.0f32.to_radians();
-    let angle2: f32 = 45.0f32.to_radians();
-    let angle3: f32 = 50.0f32.to_radians();
+#[derive(Clone, PartialEq, Properties)]
+pub struct RobotProps {
+    pub angle1: f32,
+    pub angle2: f32,
+    pub angle3: f32,
+}
 
+#[function_component(Robot)]
+pub fn robot(props: &RobotProps) -> Html {
+    let angle1 = props.angle1.to_radians();
+    let angle2 = props.angle2.to_radians();
+    let angle3 = props.angle3.to_radians();
     let pos1 = [0.0, 0.0];
     let pos2 = [angle1.sin() * 80.0, angle1.cos() * 80.0];
     let pos3 = [
@@ -36,7 +42,7 @@ pub fn robot() -> Html {
     );
 
     html! {
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="robot-container">
             <div class="robot">
                 <div class="base"></div>
                 <div class="link" style={link1}></div>
