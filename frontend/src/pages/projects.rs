@@ -30,20 +30,21 @@ pub struct FeatureCardProps {
     pub state: State,
 }
 
-//#[derive(Properties, PartialEq, Clone, Deserialize)]
-//pub struct FeatureCardProps {
-//    pub headline: String,
-//    pub description: String,
-//    pub keywords: Vec<String>,
-//    pub features: Vec<String>,
-//    pub todos: Vec<String>,
-//    pub logo: String,
-//    pub status: Status,
-//    pub state: State,
-//}
-
 #[function_component(FeatureCard)]
 pub fn feature_card(props: &FeatureCardProps) -> Html {
+    let state = match props.state {
+        State::NotReady => "fill-red-400/55 stroke-red-400/55",
+        State::Lvs => "fill-yellow-400/55 stroke-yellow-400/55",
+        State::Beta => "fill-blue-400/55 stroke-blue-400/55",
+        State::Ready => "fill-green-400/55 stroke-green-400/55",
+    };
+    let devstatus = match props.devstatus {
+        Status::Strated => ("fill-blue-400/55", "stroke-blue-400/55"),
+        Status::Stalled => ("fill-yellow-400/55", "stroke-yellow-400/55"),
+        Status::Stopped => ("fill-red-400/55", "stroke-red-400/55"),
+        Status::Done => ("fill-green-400/55", "stroke-green-400/55"),
+    };
+
     html! {
         <div class="rounded-2xl shadow-md p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200">
             <div class="flex items-start gap-4">
@@ -57,15 +58,15 @@ pub fn feature_card(props: &FeatureCardProps) -> Html {
                             <div class="flex items-center gap-x-1.5">
                                 <p class="text-sm font-medium">{"state:"}</p>
                                 <svg class="w-4 h-4 shrink-0" fill="none" stroke-linecap="round">
-                                    <circle cx="7" cy="7" r="7" class="fill-red-400/55" />
-                                    <circle cx="7" cy="7" r="6" class="stroke-red-400/55" />
+                                    <circle cx="7" cy="7" r="7" class={state} />
+                                    <circle cx="7" cy="7" r="6" class={state} />
                                 </svg>
                             </div>
                             <div class="flex items-center gap-x-1.5">
                                 <p class="text-sm font-medium">{"dev:"}</p>
                                 <svg class="w-4 h-4 shrink-0" fill="none" stroke-linecap="round">
-                                    <circle cx="7" cy="7" r="7" class="fill-red-400/55" />
-                                    <circle cx="7" cy="7" r="6" class="stroke-red-400/55" />
+                                    <circle cx="7" cy="7" r="7" class={devstatus.0} />
+                                    <circle cx="7" cy="7" r="6" class={devstatus.1} />
                                 </svg>
                             </div>
                         </div>
@@ -81,13 +82,19 @@ pub fn feature_card(props: &FeatureCardProps) -> Html {
                             <div>
                                 <h3 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-1">{"Features"}</h3>
                                 <ul class="text-sm text-gray-600 dark:text-gray-400 list-disc pl-5">
-                                    { for props.features.split("\n").map(|feature| html! { <li>{ feature }</li> }) }
+                                    {
+                                        for props.features.split("\n").filter_map(|feature|
+                                            if feature.is_empty(){None}else{ Some(html! { <li>{ feature }</li> })})
+                                    }
                                 </ul>
                             </div>
                             <div>
                                 <h3 class="text-md font-semibold text-gray-700 dark:text-gray-300 mb-1">{"Improvements"}</h3>
                                 <ul class="text-sm text-gray-600 dark:text-gray-400 list-disc pl-5">
-                                    { for props.improvements.split("\n").map(|todo| html! { <li>{ todo }</li> }) }
+                                    {
+                                        for props.improvements.split("\n").filter_map(|todo|
+                                            if todo.is_empty(){None}else{Some(html! { <li>{ todo }</li> })})
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -100,98 +107,22 @@ pub fn feature_card(props: &FeatureCardProps) -> Html {
 
 #[function_component(Projects)]
 pub fn main() -> Html {
-    //let sample_data = vec![
-    //    FeatureCardProps {
-    //        headline: "Rusty Bar".to_string(),
-    //        description: "Rusty Bar er en statusbar til Wayland, udviklet i Rust med GTK-4. Den er designet med fokus på konfiguration og ikoner. Primært skabt til eget brug, er Rusty Bar særligt optimeret til Hyprland, da det er den window manager, jeg anvender. Jeg bruger selv Rusty Bar som min statusbar.".to_string(),
-    //        logo: "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg&w=1080&fit=max".to_string(),
-    //        keywords: vec![
-    //            "Linux".to_string(),
-    //            "Wayland".to_string(),
-    //            "GTK-4".to_string(),
-    //            "System Monitoring".to_string(),
-    //            "Status Bar".to_string(),
-    //        ],
-    //        features: vec![
-    //            "ron configuration".to_string(),
-    //            "Hyprland Virtual Desktop Management".to_string(),
-    //            "System Metrics (CPU, ram, temps, battery)".to_string(),
-    //            "volume control with alsa integration".to_string(),
-    //            "Pango markup and text formatting".to_string(),
-    //        ],
-    //        todos: vec![
-    //            "Generic Wlroots Virtual Desktop Management".to_string(),
-    //            "System tray".to_string(),
-    //            "Increased stability".to_string(),
-    //        ],
-    //        status: Status::Stopped,
-    //        state:State::Beta,
-    //
-    //    },
-    //    FeatureCardProps {
-    //        headline: "Headline".to_string(),
-    //        description: "Description".to_string(),
-    //        logo: "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg&w=1080&fit=max".to_string(),
-    //        keywords: vec![
-    //            "Item 1".to_string(),
-    //            "Item 2".to_string(),
-    //            "Item 3".to_string(),
-    //            "Item 4".to_string(),
-    //        ],
-    //        features: vec![
-    //            "Item A".to_string(),
-    //            "Item B".to_string(),
-    //            "Item C".to_string(),
-    //            "Item D".to_string(),
-    //        ],
-    //        todos: vec![
-    //            "Task A".to_string(),
-    //            "Task B".to_string(),
-    //            "Task C".to_string(),
-    //            "Task D".to_string(),
-    //        ],
-    //        status: Status::Stopped,
-    //        state:State::Lvs,
-    //    },
-    //    FeatureCardProps {
-    //        headline: "Headline".to_string(),
-    //        description: "Description".to_string(),
-    //        logo: "/path/to/logo.png".to_string(),
-    //        keywords: vec![
-    //            "Item 1".to_string(),
-    //            "Item 2".to_string(),
-    //            "Item 3".to_string(),
-    //            "Item 4".to_string(),
-    //        ],
-    //        features: vec![
-    //            "Feature X".to_string(),
-    //            "Feature Y".to_string(),
-    //            "Feature Z".to_string(),
-    //        ],
-    //        todos: vec![
-    //            "Todo X".to_string(),
-    //            "Todo Y".to_string(),
-    //            "Todo Z".to_string(),
-    //        ],
-    //        status: Status::Stopped,
-    //        state:State::Lvs,
-    //    },
-    //];
-
-    let data = use_state(|| vec![]);
+    let data = use_state(|| Vec::new());
     {
         let data = data.clone();
-        wasm_bindgen_futures::spawn_local(async move {
-            match Request::get("/api/projects").send().await {
-                Ok(response) => {
-                    let bytes = response.binary().await.unwrap();
-                    let mut deserializer = Deserializer::new(&bytes[..]);
-                    let items: Vec<FeatureCardProps> =
-                        Deserialize::deserialize(&mut deserializer).unwrap();
-                    data.set(items);
+        use_effect_with((), move |_| {
+            wasm_bindgen_futures::spawn_local(async move {
+                match Request::get("/api/projects").send().await {
+                    Ok(response) => {
+                        let bytes = response.binary().await.unwrap();
+                        let mut deserializer = Deserializer::new(&bytes[..]);
+                        let items: Vec<FeatureCardProps> =
+                            Deserialize::deserialize(&mut deserializer).unwrap();
+                        data.set(items);
+                    }
+                    Err(_err) => {}
                 }
-                Err(err) => {}
-            }
+            });
         });
     }
 
