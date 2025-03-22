@@ -72,19 +72,14 @@ body {
 
 .grip {
   position: absolute;
-  width: 40px;
-  height: 35px;
-  background: linear-gradient(145deg, #222, #555);
+  width: 50px;
+  height: 45px;
+  background: linear-gradient(145deg, #666, #555);
   border-radius: 20%;
   z-index: 10;
   transform-origin: 20px 5px;
-}
-.grip div {
-  position: absolute;
-  width: 20px;
-  height: 30px;
-  background-color: var(--bg-light);
-  transform: translate(10px, 10px);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  clip-path: polygon(50% 0%, 100% 57%, 62% 100%, 62% 85%, 88% 57%, 50% 14%, 13% 57%, 38% 86%, 38% 100%, 0% 57%, 50% 0%);
 }
 
 /* Dark Mode */
@@ -95,6 +90,7 @@ body {
 }
 /* Navigation Bar */
 .navbar {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,6 +98,8 @@ body {
   background-color: var(--bg-light);
   border-bottom: 2px solid var(--primary-color);
   transition: background 0.3s ease;
+  z-index: 1000;
+  width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -228,23 +226,39 @@ body {
 
 .title {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  background-image: url("https://cdn.pixabay.com/photo/2018/04/20/22/18/factory-3337207_960_720.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+.title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .title .title-inner {
   display: flex;
-  align-items: end;
+  position: relative;
+  align-items: center;
+  text-align: left;
   justify-content: center;
   width: 100%;
   height: 40%;
 }
-.title h1 {
+.title .title-inner h1 {
   font-size: 4rem;
-  color: var(--text-color);
+  color: #eeeeee;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
-.title h1 .lonesome {
-  color: #ff0000;
+.title .title-inner h1 .lonesome {
+  color: #ee0000;
 }
 .title .robot-container {
   height: 100%;

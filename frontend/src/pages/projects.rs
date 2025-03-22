@@ -128,6 +128,8 @@ pub fn main() -> Html {
 
     html! {
         <div class="space-y-4 p-6 bg-gray-100 dark:bg-gray-900 min-h-screen">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100">{"Projects"}</h1>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100">{"Projects"}</h1>
             { for data.iter().map(|data| html! { <FeatureCard ..data.clone() /> }) }
         </div>
     }

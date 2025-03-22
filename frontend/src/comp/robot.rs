@@ -23,7 +23,7 @@ pub fn robot(props: &RobotProps) -> Html {
         "transform: translate({}px, {}px) rotate({}rad); ",
         pos1[0], pos1[1], -angle1
     );
-    let joint = format!(
+    let joint1 = format!(
         "transform: translate({}px, {}px)",
         pos2[0],
         pos2[1] + 3.0 + 2.5 * angle1.sin(),
@@ -34,8 +34,13 @@ pub fn robot(props: &RobotProps) -> Html {
         pos2[1],
         -angle2 - angle1
     );
+    let joint2 = format!(
+        "transform: translate({}px, {}px)",
+        pos3[0],
+        pos3[1] + 3.0 + 2.5 * angle1.sin(),
+    );
     let link3 = format!(
-        "transform: translate({}px, {}px) rotate({}rad);",
+        "transform: translate({}px, {}px) rotate({}rad);z-index: -1",
         pos3[0],
         pos3[1] + 2.5 + 2.5 * angle1.sin(),
         -angle3 - angle2 - angle1
@@ -46,9 +51,10 @@ pub fn robot(props: &RobotProps) -> Html {
             <div class="robot">
                 <div class="base"></div>
                 <div class="link" style={link1}></div>
-                <div class="joint" style={joint}></div>
+                <div class="joint" style={joint1}></div>
                 <div class="link" style={link2}></div>
-                <div class="grip" style={link3}><div></div></div>
+                <div class="joint" style={joint2}></div>
+                <div class="grip" style={link3}></div>
             </div>
         </div>
     }

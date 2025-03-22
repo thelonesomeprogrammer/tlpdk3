@@ -2,13 +2,16 @@
 
 /* Navigation Bar */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: var(--bg-light);
-  border-bottom: 2px solid var(--primary-color);
-  transition: background 0.3s ease;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: var(--bg-light);
+    border-bottom: 2px solid var(--primary-color);
+    transition: background 0.3s ease;
+    z-index: 1000;
+    width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {

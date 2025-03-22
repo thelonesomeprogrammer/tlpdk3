@@ -47,20 +47,18 @@
 
 .grip {
     position: absolute;
-    width: 40px;
-    height: 35px;
-    background: linear-gradient(145deg, #222, #555);
+    width: 50px;
+    height: 45px;
+    background: linear-gradient(145deg, #666, #555);
     border-radius: 20%;
     z-index: 10;
     transform-origin: 20px 5px;
-
-    div {
-        position: absolute;
-        width: 20px;
-        height: 30px;
-        background-color: var(--bg-light);
-        transform: translate(10px,10px);
-    }
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    clip-path: polygon(
+      50% 0%, 100% 57%, 62% 100%, 62% 85%, 88% 57%, 50% 14%, 13% 57%, 38% 86%, 38% 100%, 0% 57%, 50% 0%
+    //50% 100%, 100% 15px, 25px 0, 25px 5px,35px 15px, 50% 30px,
+    //5px 15px, 15px 5px, 15px 0px, 0 15px, 50% 100%
+    );
 
 }
 
