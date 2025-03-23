@@ -56,7 +56,8 @@
 
 .navbar-item a {
   text-decoration: none;
-  color: var(--text-color-dark);
+  color: var(--text-color-light);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   font-size: 1rem;
   padding: 0.5rem 1rem;
   transition: background 0.3s ease, color 0.3s ease;
@@ -66,17 +67,7 @@
 .navbar-item a:hover {
   background-color: var(--hover-bg);
   color: var(--primary-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  .navbar-item a {
-    color: var(--text-color-light);
-  }
-
-  .navbar-item a:hover {
-    background-color: var(--primary-color);
-    color: var(--text-color-light);
-  }
+  text-shadow: 0 0 0px rgba(0, 0, 0, 0);
 }
 
 /* Mobile Menu */
