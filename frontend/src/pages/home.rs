@@ -1,15 +1,47 @@
 use crate::comp::modal::Modal;
 use crate::comp::robot::Robot;
-use yew::{function_component, html, Html};
+use gloo::events::EventListener;
+use wasm_bindgen::JsCast;
+use web_sys::{window, HtmlElement};
+use yew::{function_component, html, use_effect_with, Html};
 
 #[function_component(Home)]
 pub fn home() -> Html {
+    use_effect_with((), move |_| {
+        let window = window().expect("window not available");
+        let text_element = window
+            .document()
+            .expect("document not available")
+            .query_selector(".magictext")
+            .expect("failed to query selector")
+            .expect("query selector returned None")
+            .dyn_into::<HtmlElement>()
+            .expect("element is not an HtmlElement");
+
+        // Scroll event listener
+        let listener = EventListener::new(
+            &web_sys::window().expect("window not available"),
+            "scroll",
+            move |_event| {
+                let scroll_y = window.scroll_y().unwrap_or(0.0);
+                let transform_value = format!("translateY({}px)", -scroll_y * 0.1);
+                text_element
+                    .style()
+                    .set_property("transform", &transform_value)
+                    .expect("failed to set style");
+            },
+        );
+
+        // Cleanup: automatically drops the listener when effect runs again or component unmounts
+        move || drop(listener)
+    });
+
     return html! {
         <div>
             <div class="title">
                 <div class="flex justify-center gap-4 title-inner">
                     <Robot angle1={-20.0} angle2={-25.0} angle3={-6.0} />
-                    <h1 class="leading-none">
+                    <h1 class="leading-none magictext">
                         {"The"}<br/>
                         <span class="lonesome"> {"Lonesome"} </span><br/>
                         {"Programmer"}
