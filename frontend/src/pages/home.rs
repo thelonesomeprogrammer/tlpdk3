@@ -1,9 +1,13 @@
+use crate::comp::layered_list_card::{LayeredListCard, LayeredListCardProps};
 use crate::comp::modal::Modal;
 use crate::comp::robot::Robot;
 use gloo::events::EventListener;
+use gloo::net::http::Request;
+use rmp_serde::Deserializer;
+use serde::Deserialize;
 use wasm_bindgen::JsCast;
 use web_sys::{window, HtmlElement};
-use yew::{function_component, html, use_effect_with, Html};
+use yew::{function_component, html, use_effect_with, use_state, Html, Properties};
 
 #[function_component(Home)]
 pub fn home() -> Html {
@@ -36,6 +40,25 @@ pub fn home() -> Html {
         move || drop(listener)
     });
 
+    let layered_list_items = use_state(|| Vec::new());
+    {
+        let data = layered_list_items.clone();
+        use_effect_with((), move |_| {
+            wasm_bindgen_futures::spawn_local(async move {
+                match Request::get("/api/experiences").send().await {
+                    Ok(response) => {
+                        let bytes = response.binary().await.unwrap();
+                        let mut deserializer = Deserializer::new(&bytes[..]);
+                        let items: Vec<LayeredListCardProps> =
+                            Deserialize::deserialize(&mut deserializer).unwrap();
+                        data.set(items);
+                    }
+                    Err(_err) => {}
+                }
+            });
+        });
+    }
+
     return html! {
         <div>
             <div class="title">
@@ -61,106 +84,80 @@ pub fn home() -> Html {
                         }
                     </p>
                 </Modal>
-                <div class="content modal-line-container flex justify-center mt-8 mb-8">
+                <div class="content modal-line-container flex justify-center mt-8 pe-8">
                     <Modal>
                         <h2 class="ex-title">{"Mine Erfaringer"}</h2>
                         <div class="flex justify-evenly">
-                            <Modal>
-                                <h3>{"Linux"}</h3>
-                                <ul class="layered-list">
-                                    <li>
-                                        {"Arch Linux - Desktop"}
-                                        <ul>
-                                            <li>{"3+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"Arch Linux - Server"}
-                                        <ul>
-                                            <li>{"1+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"NixOS - Server"}
-                                        <ul>
-                                            <li>{"1+ år"}</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </Modal>
-                            <Modal>
-                                <h3>{"programmering"}</h3>
-                                <ul class="layered-list">
-                                    <li>
-                                        {"Python"}
-                                        <ul>
-                                            <li>{"4+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"Rust"}
-                                        <ul>
-                                            <li>{"3+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"C/C++"}
-                                        <ul>
-                                            <li>{"2+ år"}</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </Modal>
-                            <Modal>
-                                <h3>{"frameworks"}</h3>
-                                <ul class="layered-list">
-                                    <li>
-                                        {"Arduino"}
-                                        <ul>
-                                            <li>{"2+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"Yew.rs"}
-                                        <ul>
-                                            <li>{"2+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"ROS2"}
-                                        <ul>
-                                            <li>{"1+ år"}</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </Modal>
-                            <Modal>
-                                <h3>{"Arbejde"}</h3>
-                                <ul class="layered-list">
-                                    <li>
-                                        {"Raklame omdeler"}
-                                        <ul>
-                                            <li>{"1 sommer"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"fajedreng"}
-                                        <ul>
-                                            <li>{"2+ år"}</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        {"Servicemedarbejder"}
-                                        <ul>
-                                            <li>{"2+ år"}</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </Modal>
+                            {
+                                for layered_list_items.iter().map(|experience| {
+                                    html! {
+                                        <LayeredListCard title={experience.title.to_string()} items={experience.items.clone()} />
+                                    }
+                                })
+                            }
                         </div>
                     </Modal>
                 </div>
             </div>
+            <div class="content pt-4 ps-4 pe-4 ">
+                <Modal>
+                    <div class="relative modal-line-container grid snake">
+                        <SnakeTurn turn={SnakeTurnType::EmptyRight} /> <SnakeTurn turn={SnakeTurnType::Straight} /><Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::LeftDown} />
+                        <SnakeTurn turn={SnakeTurnType::RightDown} /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::UpLeft} />
+                        <SnakeTurn turn={SnakeTurnType::UpRight} /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::LeftDown} />
+                        <SnakeTurn turn={SnakeTurnType::EmptyRight} /> <SnakeTurn turn={SnakeTurnType::Straight} /><Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::UpLeft} />
+                    </div>
+                </Modal>
+            </div>
         </div>
     };
+}
+
+#[function_component(Card)]
+fn card() -> Html {
+    html! {
+        <div class="card justify-center items-center flex">
+            <Modal>
+                <h3>{"some text"}</h3>
+                <p class="text-sm text-gray-600">
+                    {"some longer description some longer description even more description and so on ..."}
+                </p>
+            </Modal>
+        </div>
+    }
+}
+
+#[derive(Clone, PartialEq)]
+enum SnakeTurnType {
+    EmptyRight,
+    EmptyLeft,
+    Straight,
+    LeftDown,
+    UpLeft,
+    RightDown,
+    UpRight,
+}
+
+#[derive(Clone, PartialEq, Properties)]
+struct SnakeTurnProps {
+    turn: SnakeTurnType,
+}
+
+#[function_component(SnakeTurn)]
+fn turn(props: &SnakeTurnProps) -> Html {
+    html! {
+        <div class="snake-turn">
+            {
+                match props.turn {
+                    SnakeTurnType::EmptyRight => html! { <><div class="empty" /><div class="straight" /></> },
+                    SnakeTurnType::EmptyLeft => html! { <><div class="straight" /><div class="empty" /></> },
+                    SnakeTurnType::Straight => html! { <div class="straight" /> },
+                    SnakeTurnType::LeftDown => html! { <div class="left-down" /> },
+                    SnakeTurnType::UpLeft => html! { <div class="up-left" /> },
+                    SnakeTurnType::RightDown => html! { <div class="right-down" /> },
+                    SnakeTurnType::UpRight => html! { <div class="up-right" /> },
+                }
+            }
+        </div>
+    }
 }

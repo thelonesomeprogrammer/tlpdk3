@@ -554,10 +554,6 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
 }
@@ -700,6 +696,10 @@ video {
 
 .pe-4 {
   padding-inline-end: 1rem;
+}
+
+.pe-8 {
+  padding-inline-end: 2rem;
 }
 
 .pl-4 {
