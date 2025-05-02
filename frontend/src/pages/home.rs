@@ -1,3 +1,4 @@
+use crate::comp::card_snake::{CardProps, CardSnake, SnakeProps};
 use crate::comp::layered_list_card::{LayeredListCard, LayeredListCardProps};
 use crate::comp::modal::Modal;
 use crate::comp::robot::Robot;
@@ -7,7 +8,7 @@ use rmp_serde::Deserializer;
 use serde::Deserialize;
 use wasm_bindgen::JsCast;
 use web_sys::{window, HtmlElement};
-use yew::{function_component, html, use_effect_with, use_state, Html, Properties};
+use yew::{function_component, html, use_effect_with, use_state, Html};
 
 #[function_component(Home)]
 pub fn home() -> Html {
@@ -76,11 +77,13 @@ pub fn home() -> Html {
                 <Modal>
                     <p>
                         {
-                            "Velkommen til min personlige hjemmeside!
+                            "
+                            Velkommen til min personlige hjemmeside!
                             Jeg er en softwareudvikler og robotingeniør under uddannelse.
                             Jeg har erfaring inden for cloud-native systemer, embedded udvikling og robotteknologi.
                             Jeg elsker at bygge effektive og innovative løsninger, både i skyen og på bare metal.
-                            På dette site kan du se nogle af mine projekter, erfaringer og de teknologier, jeg arbejder med."
+                            På dette site kan du se nogle af mine projekter, erfaringer og de teknologier, jeg arbejder med.
+                            "
                         }
                     </p>
                 </Modal>
@@ -101,63 +104,87 @@ pub fn home() -> Html {
             </div>
             <div class="content pt-4 ps-4 pe-4 ">
                 <Modal>
-                    <div class="relative modal-line-container grid snake">
-                        <SnakeTurn turn={SnakeTurnType::EmptyRight} /> <SnakeTurn turn={SnakeTurnType::Straight} /><Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::LeftDown} />
-                        <SnakeTurn turn={SnakeTurnType::RightDown} /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::UpLeft} />
-                        <SnakeTurn turn={SnakeTurnType::UpRight} /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::LeftDown} />
-                        <SnakeTurn turn={SnakeTurnType::EmptyRight} /> <SnakeTurn turn={SnakeTurnType::Straight} /><Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <Card /> <SnakeTurn turn={SnakeTurnType::Straight} /> <SnakeTurn turn={SnakeTurnType::UpLeft} />
-                    </div>
+                    <h2 class="ex-title">{"Min Tech Rejse: "}</h2>
+                <CardSnake
+                    cards={
+                        vec![
+                                CardProps {
+                                    title: "Starten".to_string(),
+                                    content: "Startede på Windows, med et minimum af programmeringserfaring og en nysgerrighed for teknologiens verden.".to_string(),
+                                },
+    CardProps {
+        title: "Første Skridt".to_string(),
+        content: "Begyndte at programmere med Python som en del af min gymnasieuddannelse – det tændte en gnist.".to_string(),
+    },
+    CardProps {
+        title: "Swift & SwiftUI".to_string(),
+        content: "Udforskede app-udvikling til Apple-platformen og udgav mine egne apps på App Store.".to_string(),
+    },
+    CardProps {
+        title: "Tilbage til Python".to_string(),
+        content: "Da min MacBook ikke længere blev understøttet, vendte jeg tilbage til Python og fokuserede intensivt i flere måneder.".to_string(),
+    },
+    CardProps {
+        title: "Ubuntu Tiden".to_string(),
+        content: "Skiftede midlertidigt til Ubuntu for at dykke dybere ned i lav-niveau programmering og udforske Assembly.".to_string(),
+    },
+    CardProps {
+        title: "Frontend Nysgerrighed".to_string(),
+        content: "Fik smag for frontend-verdenen gennem HTML, CSS og JavaScript – og endte hurtigt med React.".to_string(),
+    },
+    CardProps {
+        title: "Full-Stack Drømme".to_string(),
+        content: "Drømmen om fuld kontrol førte mig til Flask og Django, hvor jeg kunne bygge hele løsninger fra bunden.".to_string(),
+    },
+    CardProps {
+        title: "Manjaro Inspiration".to_string(),
+        content: "Så Manjaro på en vens laptop – det vækkede min interesse for Linux og friheden ved open-source.".to_string(),
+    },
+    CardProps {
+        title: "C/C++ Erfaring".to_string(),
+        content: "Dykkede ned i C og C++ under studiet – en udfordrende men lærerig oplevelse, hvor Python begyndte at føles begrænsende.".to_string(),
+    },
+    CardProps {
+        title: "Arch Rejsen".to_string(),
+        content: "Installerede Arch Linux ved siden af Windows. Gik fra KDE til Qtile og begyndte at forme mit eget miljø.".to_string(),
+    },
+    CardProps {
+        title: "WM Hopperi".to_string(),
+        content: "Eksperimenterede med forskellige window managers og arbejdsmiljøer – konstant søgende efter det perfekte setup.".to_string(),
+    },
+    CardProps {
+        title: "Opdagede Rust".to_string(),
+        content: "Rust fangede mig med det samme – sikkerhed, fart og moderne udvikling i ét sprog. Det blev hurtigt mit primære værktøj.".to_string(),
+    },
+    CardProps {
+        title: "Rust i Backend".to_string(),
+        content: "Begyndte at bruge Rust til backend-udvikling og opdagede dens styrker i systemprogrammering og webudvikling.".to_string(),
+    },
+    CardProps {
+        title: "Rust i Embedded".to_string(),
+        content: "Udforskede Rusts potentiale i embedded udvikling – det føltes som en perfekt pasform for min interesse.".to_string(),
+    },
+    CardProps {
+        title: "Rust til Full-Stack".to_string(),
+        content: "Begyndte at bruge Rust til både frontend og backend – det føltes som en naturlig udvikling af mine færdigheder.".to_string(),
+    },
+    CardProps {
+        title: "ROS2".to_string(),
+        content: "Dykker ned i ROS2 og robotteknologi – en spændende rejse, der kombinerer min interesse for software og hardware. og en del af min uddannelse til robotingeniør".to_string(),
+    },
+    CardProps {
+        title: "Python i dag".to_string(),
+        content: "Selvom Rust er mit foretrukne sprog, bruger jeg stadig Python til scripts, automation og hurtige prototyper.".to_string(),
+    },
+    CardProps {
+        title: "Nuværende Setup".to_string(),
+        content: "Mit nuværende udviklingsmiljø er Hyprland med Neovim, Alacritty og Vivaldi – skarpt, hurtigt og præcist, som jeg kan lide det.".to_string(),
+    },
+                        ]
+                    }
+                    nr={3} />
                 </Modal>
             </div>
         </div>
     };
-}
-
-#[function_component(Card)]
-fn card() -> Html {
-    html! {
-        <div class="card justify-center items-center flex">
-            <Modal>
-                <h3>{"some text"}</h3>
-                <p class="text-sm text-gray-600">
-                    {"some longer description some longer description even more description and so on ..."}
-                </p>
-            </Modal>
-        </div>
-    }
-}
-
-#[derive(Clone, PartialEq)]
-enum SnakeTurnType {
-    EmptyRight,
-    EmptyLeft,
-    Straight,
-    LeftDown,
-    UpLeft,
-    RightDown,
-    UpRight,
-}
-
-#[derive(Clone, PartialEq, Properties)]
-struct SnakeTurnProps {
-    turn: SnakeTurnType,
-}
-
-#[function_component(SnakeTurn)]
-fn turn(props: &SnakeTurnProps) -> Html {
-    html! {
-        <div class="snake-turn">
-            {
-                match props.turn {
-                    SnakeTurnType::EmptyRight => html! { <><div class="empty" /><div class="straight" /></> },
-                    SnakeTurnType::EmptyLeft => html! { <><div class="straight" /><div class="empty" /></> },
-                    SnakeTurnType::Straight => html! { <div class="straight" /> },
-                    SnakeTurnType::LeftDown => html! { <div class="left-down" /> },
-                    SnakeTurnType::UpLeft => html! { <div class="up-left" /> },
-                    SnakeTurnType::RightDown => html! { <div class="right-down" /> },
-                    SnakeTurnType::UpRight => html! { <div class="up-right" /> },
-                }
-            }
-        </div>
-    }
 }
