@@ -1,0 +1,38 @@
+pipeline:
+  laravel:
+    image: composer:latest
+    volumes:
+      - /woodpecker-cache/composer:/composer
+    environment:
+      COMPOSER_HOME: /composer
+    commands:
+      - apt update && apt install -y unzip git
+      - cd backend
+      - composer install --no-dev --optimize-autoloader
+      - php artisan config:cache
+
+  frontend:
+    image: rust:latest
+    volumes:
+      - /woodpecker-cache/cargo:/cargo
+      - /woodpecker-cache/target:/target
+      - /woodpecker-cache/trunk:/root/.cache/trunk
+    environment:
+      CARGO_HOME: /cargo
+      CARGO_TARGET_DIR: /target
+    commands:
+      - apt update && apt install -y curl pkg-config libssl-dev
+      - rustup target add wasm32-unknown-unknown
+      - cargo install trunk --locked
+      - cd frontend
+      - trunk build --release
+
+  deploy:
+    image: alpine:latest
+    secrets: [ftp_user, ftp_pass, ftp_ip]
+    commands:
+      - apk add --no-cache lftp
+      - cd backend
+      - lftp -e "mirror -R --only-newer public /public_html/ --exclude .env --exclude .htaccess && bye" \
+          -u \"$FTP_USER\",\"$FTP_PASS\" ftp://$FTP_IP
+
