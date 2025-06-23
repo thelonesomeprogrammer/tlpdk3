@@ -1,5 +1,5 @@
-pipeline:
-  laravel:
+steps:
+  - name: laravel
     image: composer:latest
     volumes:
       - /woodpecker-cache/composer:/composer
@@ -11,7 +11,7 @@ pipeline:
       - composer install --no-dev --optimize-autoloader
       - php artisan config:cache
 
-  frontend:
+  - name: frontend
     image: rust:latest
     volumes:
       - /woodpecker-cache/cargo:/cargo
@@ -27,7 +27,7 @@ pipeline:
       - cd frontend
       - trunk build --release
 
-  deploy:
+  -name: deploy
     image: alpine:latest
     secrets: [ftp_user, ftp_pass, ftp_ip]
     commands:
