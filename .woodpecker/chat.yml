@@ -27,7 +27,7 @@ steps:
       - cd frontend
       - trunk build --release
 
-  -name: deploy
+  - name: deploy
     image: alpine:latest
     secrets: [ftp_user, ftp_pass, ftp_ip]
     commands:
