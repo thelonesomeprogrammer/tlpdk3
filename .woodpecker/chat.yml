@@ -1,8 +1,6 @@
 steps:
   - name: laravel
     image: composer:latest
-    volumes:
-      - /woodpecker-cache/composer:/composer
     environment:
       COMPOSER_HOME: /composer
     commands:
@@ -13,10 +11,6 @@ steps:
 
   - name: frontend
     image: rust:latest
-    volumes:
-      - /woodpecker-cache/cargo:/cargo
-      - /woodpecker-cache/target:/target
-      - /woodpecker-cache/trunk:/root/.cache/trunk
     environment:
       CARGO_HOME: /cargo
       CARGO_TARGET_DIR: /target
@@ -29,7 +23,13 @@ steps:
 
   - name: deploy
     image: alpine:latest
-    secrets: [ftp_user, ftp_pass, ftp_ip]
+    environment:
+      FTP_USER:
+        from_secret: ftp_user
+      FTP_PASS:
+        from_secret: ftp_pass
+      FTP_IP:
+        from_secret: ftp_ip
     commands:
       - apk add --no-cache lftp
       - cd backend
