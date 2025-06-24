@@ -6,7 +6,6 @@ steps:
       COMPOSER_HOME: /composer
     commands:
       - apt update && apt install -y unzip git
-      - cd backend
       - composer install --no-dev --optimize-autoloader
       - php artisan config:cache
 
@@ -33,7 +32,6 @@ steps:
         from_secret: ftp_ip
     commands:
       - apk add --no-cache lftp
-      - cd backend
-      - lftp -e "mirror -R --only-newer public /public_html/ --exclude .env --exclude .htaccess && bye" \
+      - lftp -e "mirror -R --only-newer ./ /public_html/ --exclude .env --exclude .htaccess --exclude-glob .git* --exclude-glob tests/ --exclude-glob frontend/ && bye" \
           -u \"$FTP_USER\",\"$FTP_PASS\" ftp://$FTP_IP
 
